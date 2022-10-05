@@ -14,7 +14,7 @@ def make_window() -> None:
         [gui.Text(size=(40, 1), key='-OUTPUT-')],
         [gui.Button('导出详细数据', key='-EXPORT DETAIL CSV-'),
          gui.Button('导出汇总清单', key='-EXPORT INDEX TXT-')],
-        [gui.Text("Version 0.1.1", size=(30, 1),), gui.Text("for 勤奋的攸萨")]
+        [gui.Text("Version 0.1.2", size=(30, 1),), gui.Text("For 勤奋的攸萨")]
     ]
     window = gui.Window('Wiki 贡献统计', layout,
                         location=Utils.Position,
@@ -28,9 +28,6 @@ def main() -> None:
 
     window = make_window()
 
-    # window['-USERNAME-'].update(default_text=)
-    # window['-START TIME-'].update('123')
-
     while True:
         event, values = window.read()
         if event in ('Exit', 'Quit', gui.WINDOW_CLOSED):
@@ -42,9 +39,11 @@ def main() -> None:
                 Utils.Position = window.current_location()
                 Utils.save_config()
                 if values['-START TIME-']:
-                    Utils.Config['ucstart'] = f'{values["-START TIME-"]}T00:00:00Z'
+                    Utils.Config['ucstart'] = Utils.cst_to_utc(
+                        f'{values["-START TIME-"]} 00:00:00')
                     if values['-END TIME-']:
-                        Utils.Config['ucend'] = f'{values["-END TIME-"]}T00:00:00Z'
+                        Utils.Config['ucend'] = Utils.cst_to_utc(
+                            f'{values["-END TIME-"]} 00:00:00')
                     else:
                         Utils.Config['ucend'] = Utils.cst_to_utc(Utils.now())
                     window['-OUTPUT-'].update('', text_color='white')

@@ -190,5 +190,8 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
 
-*.ps1
 poetry.lock
+*.json
+*.csv
+*.txt
+*.ps1
