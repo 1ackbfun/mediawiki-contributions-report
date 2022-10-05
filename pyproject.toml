@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mediawiki-contributions-report"
+version = "0.1.0"
+description = ""
+authors = ["lackbfun <git@lackb.fun>"]
+readme = "README.md"
+packages = [{include = "core"}]
+
+[tool.poetry.scripts]
+test = "core.crawler:main"
+gui = "core.gui:main"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.1"
+PySimpleGUIWx = "^0.17.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
